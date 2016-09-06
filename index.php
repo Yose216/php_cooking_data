@@ -93,13 +93,14 @@ for ($i = 0; $i < count($top); $i++) {
 ************************** FILM 2000 ***************************************
 ***************************************************************************/
 
-$date = array();
-foreach($top as $film){
-    array_push($date, $film["im:releaseDate"]["label"]);//envoi la date du film en dans un nvx tableaux
+$filmAvant2000 =  array();
+for ($i=0; $i <count($top); $i++){
+  if($top[$i]["im:releaseDate"]["label"]<2000){
+      array_push($filmAvant2000,$top[$i]["im:name"]["label"]);//met dans un nvx tableaux film avant 2000
+  }
 }
-echo'<br/>';
-print_r(count(array_search(2000,$date)));//cherche et compte le nombre de film en 2000
-echo ' film sortie en 2000';
+$nombreFilm = array_count_values($filmAvant2000);//compte les valeurs avant 2000
+echo 'Il y a '. array_sum($most) .' films sortie avant 2000';//additione et affiche film avant 2000
 
 
 /***************************************************************************
